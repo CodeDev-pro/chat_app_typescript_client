@@ -1,11 +1,30 @@
 import React from "react";
 import { createStyles } from "./utils/Resources";
 import { Theme } from "./theme/Theme";
+import classnames from 'classnames'
 
 type ButtonProps = {
   handleClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
   children?: string;
 } & Omit<React.ComponentProps<"button">, "children">;
+
+type LinkProps = {
+  to?: string,
+  type?: "btn" | "a",
+  gutterLeft?: boolean,
+  gutterRight?: boolean
+} & React.ComponentProps<"a">
+
+const useAnchorStyles = createStyles<Theme, LinkProps>((theme, props) => ({
+  root: {
+    ...theme.textOptions.body2,
+    fontSize: "0.7rem",
+    textDecoration: 'none',
+    color: theme.palette.primary.main,
+    margin: `0 ${props.gutterRight ? "5px" : "0px"} 0 ${props.gutterLeft ? "5px" : "0px"}`,
+    cursor: "pointer"
+  }
+}))
 
 const useStyles = createStyles<Theme, ButtonProps>((theme, props) => ({
   root: {
@@ -32,10 +51,18 @@ const Button = (props: ButtonProps) => {
   const { handleClick, children, ...rest } = props;
   const classes = useStyles(props);
   return (
-    <button className={classes.root} onClick={handleClick} {...rest}>
+    <button className={classnames(classes.root, props.className)} onClick={handleClick} {...rest}>
       {children}
     </button>
   );
 };
+
+
+export const Link = (props: LinkProps) => {
+  const classes = useAnchorStyles(props)
+  return <a className={classnames(classes.root, props.className)}>
+    {props.children}
+  </a>
+}
 
 export default Button;

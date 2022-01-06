@@ -44,9 +44,9 @@ const useStyles = createStyles<Theme, StyledTextProps>(
     root: {
       color: props.color,
       width: props.width,
+      fontSize: props.fontSize,
       "& h1": {
         ...theme.textOptions.h1,
-        ...props,
       },
       "& h2": {
         ...theme.textOptions.h2,
@@ -67,15 +67,21 @@ const useStyles = createStyles<Theme, StyledTextProps>(
     },
     body1: {
       ...theme.textOptions.body1,
-      ...props
+      color: props.color,
+      width: props.width,
+      fontSize: props.fontSize,
     },
     body2: {
       ...theme.textOptions.body1,
-      ...props
+      color: props.color,
+      width: props.width,
+      fontSize: props.fontSize,
     },
     caption: {
       ...theme.textOptions.caption,
-      ...props
+      color: props.color,
+      width: props.width,
+      fontSize: props.fontSize,
     },
   })
 );

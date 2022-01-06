@@ -6,6 +6,7 @@ import {
 import { Theme } from '@mui/material'
 import React from "react";
 import * as CSS from 'csstype';
+import classnames from 'classnames'
 
 type FlexContainerProps = {
 
@@ -20,12 +21,14 @@ type ContainerProps = {
   flexBox?: boolean;
   gutter?: boolean;
   borderRadius?: CSS.Property.BorderRadius,
-  padTop?: boolean
+  padTop?: boolean,
+  className?: string,
+  gutterTop?: boolean
 };
 
 const useStyles = makeStyles<Theme, ContainerProps>(theme => ({
   root: {
-    padding: ({ gutter, padTop }) => `${padTop ? "2rem": "0rem"} ${gutter ? "2rem" : "0rem"}`,
+    padding: ({ gutter, gutterTop }) => `${gutterTop ? "2rem": "0rem"} ${gutter ? "2rem" : "0rem"}`,
     width: "100%",
     display: ({ flexBox }) => flexBox ? "flex" : "block",
     justifyContent: ({ justifyContent }) => justifyContent,
@@ -40,7 +43,7 @@ const useStyles = makeStyles<Theme, ContainerProps>(theme => ({
 const Container = ({ gutter = false, children, ...rest }: ContainerProps) => {
   const props: ContainerProps = { gutter, children, ...rest };
   const classes = useStyles(props);
-  return <div className={classes.root}>{children}</div>;
+  return <div className={classnames(classes.root, props.className)}>{children}</div>;
 };
 
 export default Container;

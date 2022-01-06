@@ -5,7 +5,8 @@ import { Theme, theme } from "./theme/Theme";
 
 type InputStyleProps = {
     focusColor?: CSS.Property.Color,
-    className?: string
+    className?: string,
+    maxWidth?: CSS.Property.Width
 }
 
 type InputOwnProps = {
@@ -20,7 +21,8 @@ type InputProps = InputOwnProps & InputStyleProps
 const useStyles = createStyles<Theme, InputProps>((theme, props) => ({
     inputGroup: {
         width: "100%",
-        height: 'fit-content'
+        height: 'fit-content',
+        maxWidth: props.maxWidth
     },
     label: {
         ...theme.textOptions.body2,

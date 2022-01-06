@@ -1,5 +1,4 @@
 import React from "react";
-import "./Signup.css";
 import { makeStyles } from "@mui/styles";
 import ColorBackground, { Color } from "../../ui/ColorBackground";
 import GlassBackground, { Glass } from "../../ui/Glass";
@@ -11,7 +10,7 @@ import Text from "../../ui/Text";
 import { theme } from "../../ui/theme/Theme";
 import { ChatOutlined } from "@mui/icons-material";
 import InputGroup from "../../ui/Input";
-import Button from "../../ui/Button";
+import Button, { Link } from "../../ui/Button";
 import Form from "../../ui/Form";
 
 const useStyles = makeStyles({
@@ -42,10 +41,6 @@ const useStyles = makeStyles({
     width: "100%",
     padding: "0em 1em",
   },
-  margin: {
-    marginLeft: "2px",
-    cursor: "pointer"
-  }
 });
 
 const Signup = () => {
@@ -79,7 +74,7 @@ const Signup = () => {
         <Glass width={50} height={50} offset={{ right: 100, bottom: 80 }} />
         <Glass width={60} height={60} offset={{ top: 80, left: 140 }} />
       </GlassBackground> */}
-      <Container gutter padTop>
+      <Container gutter gutterTop>
         <Container flexBox borderRadius="10px">
           <Box
             flex={0.3}
@@ -131,21 +126,22 @@ const Signup = () => {
               <Grid container autofit rowGap="10px" columnGap="10px">
                 <InputGroup label="First Name" />
                 <InputGroup label="Last Name" />
+                <InputGroup label="Username" />
                 <InputGroup label="Email Address" />
                 <InputGroup label="Phone Number" />
                 <InputGroup label="Password" />
                 <InputGroup label="Retype Password" />
               </Grid>
               <Spacer height="10px" />
-              <Button>Register</Button>
+              <Button>Create Account</Button>
               <Spacer height="10px" />
               <Box flexItem centerContent width="fit-content" height="fit-content">
               <Text type="body2" variant="p" fontSize="0.8em">
                 Already have an account?
               </Text>
-              <Text type="body2" variant="p" fontSize="0.8em" color={theme.palette.primary.main} className={classes.margin}>
+              <Link gutterLeft>
                 Login
-              </Text>
+              </Link>
               </Box>
             </Form>
           </Box>
